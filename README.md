@@ -23,7 +23,7 @@ The system relies on a classic background-subtraction pipeline:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/yourusername/OpenCV_Motion-Based_Intrusion_Alarm.git](https://github.com/yourusername/OpenCV_Motion-Based_Intrusion_Alarm.git)
+   git clone [https://github.com/yourusername/OpenCV_Motion-Based_Intrusion_Alarm.git](https://github.com/smritiesharma/OpenCV_Motion-Based_Intrusion_Alarm.git)
    cd OpenCV_Motion-Based_Intrusion_Alarm
 
 2. **Install dependencies:**
