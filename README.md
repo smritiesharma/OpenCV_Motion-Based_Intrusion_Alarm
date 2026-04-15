@@ -5,6 +5,8 @@ A lightweight, real-time computer vision script that uses your webcam to detect 
 ## 💡 The "Hostel" Use Case
 This tool was built with practical security in mind. It's the perfect zero-cost solution for keeping an eye on your university hostel room door while you're away attending classes or grabbing lunch. Just point your laptop camera at the door, run the script, and let it quietly monitor your space.
 
+![Intrusion Alarm Demonstration](demo.gif)
+
 ## ✨ Features
 * **Motion Tracking:** Highlights moving objects with real-time green bounding boxes.
 * **Adjustable Sensitivity:** Easily tweak the contour threshold to ignore false positives like moving shadows or ceiling fans.
