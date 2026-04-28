@@ -1,41 +1,73 @@
 # 🚨 OpenCV Motion-Based Intrusion Alarm
 
-A lightweight, real-time computer vision script that uses your webcam to detect motion, log security events, and capture snapshots of potential intruders. Built using Python and OpenCV.
+A lightweight Python + OpenCV security tool that detects motion in real-time,
+captures intruder snapshots, and logs all security events with timestamps.
 
-## 💡 The "Hostel" Use Case
-This tool was built with practical security in mind. It's the perfect zero-cost solution for keeping an eye on your university hostel room door while you're away attending classes or grabbing lunch. Just point your laptop camera at the door, run the script, and let it quietly monitor your space.
+![Demo](demo.gif)
 
-![Intrusion Alarm Demonstration](demo.gif)
+---
 
-## ✨ Features
-* **Motion Tracking:** Highlights moving objects with real-time green bounding boxes.
-* **Adjustable Sensitivity:** Easily tweak the contour threshold to ignore false positives like moving shadows or ceiling fans.
-* **Automated Snapshots:** Captures and saves a `.jpg` image of the intruder directly to an `/alerts` folder the moment motion is detected.
-* **Persistent Logging:** Writes every detection event with an exact timestamp to a `log.txt` file for auditing.
-* **Graceful Exit:** Safely releases camera hardware and shuts down processes with a simple keystroke.
+## 🔍 How It Works
 
-## 🛠️ How it Works
-The system relies on a classic background-subtraction pipeline:
-1. **Initialization:** The script captures the first frame as a static "background" reference.
-2. **Differencing & Thresholding:** It constantly compares new frames against the background. Using absolute differencing and binary thresholding, it isolates areas of the image that have significantly changed.
-3. **Dilation & Contours:** The algorithm uses dilation to close gaps in the detected motion mask, then draws mathematical contours around the moving objects.
-4. **Logic Gate:** If the contour area exceeds the predefined `sensitivity` threshold, the alarm triggers.
+The system captures a continuous webcam feed and applies **background subtraction**
+to isolate moving objects from the static environment. When a moving contour
+exceeds a defined pixel threshold, it triggers the alarm — saving a timestamped
+snapshot and logging the event to a local file.
 
-## 🚀 Installation & Usage
+Key techniques used:
+- `cv2.absdiff()` for frame differencing
+- Contour detection via `cv2.findContours()`
+- Automated image capture with `cv2.imwrite()`
 
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/yourusername/OpenCV_Motion-Based_Intrusion_Alarm.git](https://github.com/smritiesharma/OpenCV_Motion-Based_Intrusion_Alarm.git)
-   cd OpenCV_Motion-Based_Intrusion_Alarm
+---
 
-2. **Install dependencies:**
-   ```bash
-    pip install opencv-python numpy
+## ⚙️ Setup & Run
 
-3. **Run the script:**
-   ```bash
-   python intrusion_alarm.py
-  (Note: If you are on Windows and the standard command doesn't work, use the Python launcher: py intrusion_alarm.py)
+**1. Clone the repository**
+```bash
+git clone https://github.com/smritiesharma/OpenCV_Motion-Based_Intrusion_Alarm.git
+cd OpenCV_Motion-Based_Intrusion_Alarm
+```
 
-4. **Shutdown:**
-  Press the q key while focused on the video window to safely exit the application and save the final logs.
+**2. Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+**3. Run the alarm**
+```bash
+python intrusion_alarm.py
+```
+
+> Make sure your webcam is connected. Press `Q` to quit.
+
+---
+
+## 📁 Output
+
+- Captured images are saved in the `captured_images/` folder
+- Each image is timestamped for audit trail purposes
+
+---
+
+## 🚀 Potential Extensions
+
+- 🔔 **SMS/Email Alerts** — Integrate Twilio or SMTP to send real-time notifications
+- 🧠 **Face Recognition** — Layer in `face_recognition` library to identify known vs unknown persons
+- 📊 **Event Dashboard** — Build a simple Flask web UI to view the event log and snapshots
+- 🌐 **IoT Integration** — Push alerts to a Raspberry Pi buzzer or LED system
+
+---
+
+## 🛠️ Built With
+
+- Python 3.x
+- OpenCV (`cv2`)
+
+---
+
+## 👤 Author
+
+**Smritie Sharma**
+B.Tech CSE (AIML) | IILM University
+[GitHub](https://github.com/smritiesharma)
